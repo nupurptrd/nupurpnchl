@@ -10,6 +10,8 @@ CREATE TABLE students (
   centre VARCHAR(100) NOT NULL,
   role VARCHAR(100) NOT NULL
 );
+INSERT INTO admins (name, email, password, centre, role)
+VALUES ('student', 'student123@gmail.com', MD5('student123'), 'Ahmedabad', 'student'); -- default admin
 
 CREATE TABLE exams (
   id INT AUTO_INCREMENT PRIMARY KEY,

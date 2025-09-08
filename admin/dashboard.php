@@ -1,10 +1,11 @@
 <?php
 session_start();
-if (!isset($_SESSION['role']) || $_SESSION['role'] != "admin")  {
-     echo "<h3 style='color:red;'>Access Denied. Please <a href='../login.php'>login</a> as admin. </h3>";
-    // header("Location: ../dashboard.php");
+/*// Check if the user is logged in as admin
+if (!isset($_SESSION['role']) || $_SESSION['role'] != "admin") {
+    echo "<h3 style='color:red;'>Access Denied. Please <a href='../admin/login.php'>login</a> as admin. 
+    And if you are a new user then please <a href='../admin/register.php'>register</a> as admin.</h3>";
     exit;
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>
@@ -13,7 +14,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != "admin")  {
     <link rel="stylesheet" href="../assets/style.css">
 </head>
 <body>
-    <h2>Welcome, <?php echo $_SESSION['user']; ?>!</h2>
+    <h2>Welcome, <?php echo $_SESSION['admin']; ?>!</h2>
     <ul>
         <li><a href="add_exam.php">Add Exam</a></li>
         <li><a href="add_question.php">Add Questions</a></li>

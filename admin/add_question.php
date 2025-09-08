@@ -12,10 +12,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $a = $_POST['option_a'];
     $b = $_POST['option_b'];
     $c = $_POST['option_c'];
+    $d = $_POST['option_d'];
     $correct = $_POST['correct'];
 
-    $sql = "INSERT INTO questions (exam_id, question, option_a, option_b, option_c, correct_option) 
-            VALUES ($exam_id, '$question', '$a', '$b', '$c', '$correct')";
+    $sql = "INSERT INTO questions (exam_id, question, option_a, option_b, option_c, option_d, correct_option) 
+            VALUES ($exam_id, '$question', '$a', '$b', '$c', '$c', '$correct')";
     if ($conn->query($sql)) {
         $msg = "Question added successfully!";
     } else {
@@ -50,13 +51,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="text" name="option_b" required><br>
         <label>Option C:</label>
         <input type="text" name="option_c" required><br>
+        <label>Option D:</label>
+        <input type="text" name="option_d" required><br>
         <label>Correct Answer:</label>
         <select name="correct">
             <option value="a">Option A</option>
             <option value="b">Option B</option>
             <option value="c">Option C</option>
+            <option value="d">Option D</option>
         </select><br>
         <button type="submit">Add Question</button>
+    </form>
+     <!-- ✅ Done Button -->
+    <br>
+    <form action="dashboard.php" method="get">
+        <button type="submit">Done</button>
     </form>
 </body>
 </html>

@@ -10,8 +10,8 @@
   <?php include 'header.php'; ?>
 
   <section class="hero">
-    <h2>Welcome to the Online Exam Portal</h2>
-    <p>Conducting exams securely and efficiently for students</p>
+    <h2>Welcome to the Online Exam Portal of <span style="color: black;">Blind People's Association.</span></h2>
+    <p >Conducting exams securely and efficiently for Brilliant <span style="color: black;">Visually Impaired students.</span></p>
   </section>
 
   <section class="container">
@@ -29,6 +29,11 @@
       <h3>Guidelines</h3>
       <p>Read the exam guidelines before you appear.</p>
       <a href="guidelines.php">Read Guidelines →</a>
+    </div><br>
+    <div class="card">
+      <h3>Attend exam </h3>
+      <p>Give the exam as per guided by guidelines.</p>
+      <a href="exam.php">Attend exam →</a>
     </div>
   </section>
 

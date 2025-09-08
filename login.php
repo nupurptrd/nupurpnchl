@@ -5,28 +5,27 @@ include 'config.php';
 if (isset($_POST['login'])) {
     $email    = $_POST['email'];
     $password = md5($_POST['password']);
-    $role     = $_POST['role'];
 
-    if ($role == "student") {
-        $sql = "SELECT * FROM students WHERE email='$email' AND password='$password'";
-    } else {
-        $sql = "SELECT * FROM admins WHERE username='$email' AND password='$password'";
-    }
-
+    // ✅ Only check in students table
+    $sql = "SELECT * FROM students WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         session_start();
-        $_SESSION['role'] = $role;
-        $_SESSION['user'] = $email;
+        $row = $result->fetch_assoc();
 
-        if ($role == "student") {
-            header("Location: index.php");
-        } else {
-            header("Location: admin/dashboard.php");
-        }
+        // Store session variables
+        $_SESSION['id']     = $row['id'];
+        $_SESSION['name']   = $row['name'];
+        $_SESSION['email']  = $row['email'];
+        $_SESSION['centre'] = $row['centre'];
+        $_SESSION['role']   = $row['role']; // in case you want to distinguish later
+
+        // Redirect to student home/dashboard
+        header("Location: index.php");
+        exit;
     } else {
-        echo "<p style='color:red;'>Invalid credentials</p>";
+        echo "<p style='color:red;'>Invalid email or password.</p>";
     }
 }
 
@@ -42,10 +41,21 @@ if (isset($_POST['login'])) {
   <h2>Login</h2>
   <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
   <form action="login.php" method="POST">
+  <label>Name:</label><br>
+  <input type="text" name="name" required><br><br>
   <label>Email:</label><br>
   <input type="text" name="email" required><br><br>
   <label>Password:</label><br>
   <input type="password" name="password" required><br><br>
+  <label>Login Centre:</label><br>
+  <select name="centre" required>
+    <option value="Ahmedabad">Ahmedabad</option>
+    <option value="Shaila">Shaila</option>
+    <option value="Kapadwanj">Kapadwanj</option>
+    <option value="Valsad">Valsad</option>
+    <option value="Disha">Disha</option>
+    <option value="Other">Other</option>
+  </select>
   <label>Login as:</label><br>
   <select name="role" required>
     <option value="student">Student</option>
