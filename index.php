@@ -35,6 +35,16 @@
       <p>Give the exam as per guided by guidelines.</p>
       <a href="exam.php">Attend exam →</a>
     </div>
+    <div class="card">
+      <h3>Admin Panel </h3>
+      <p>Only for admins, not allowed for students to enter.</p>
+      <a href="../Exam/admin/login.php">Admin panel →</a>
+    </div>
+    <div class="card">
+      <h3>Blind People's Association</h3>
+      <p>Explore more about the paradise of visually impaired people's.</p>
+      <a href="about.php">About BPA →</a>
+    </div>
   </section>
 
   <?php include 'footer.php'; ?>
