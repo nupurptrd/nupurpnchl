@@ -1,6 +1,6 @@
 <?php
 session_start();
-include '../config.php';
+include 'config.php';
 
 if (isset($_POST['register'])) {
     $name     = $_POST['name'];
@@ -15,7 +15,7 @@ if (isset($_POST['register'])) {
     if ($conn->query($sql) === TRUE) {
         echo "<p style='color:green;'>Student registered successfully! You can now login.</p>";
         echo "<script>
-                setTimeout(function(){ window.location.href='../login.php'; }, 2000);
+                setTimeout(function(){ window.location.href='/login.php'; }, 2000);
               </script>";
     } else {
         echo "<p style='color:red;'>Error: " . $conn->error . "</p>";

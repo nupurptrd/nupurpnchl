@@ -15,7 +15,7 @@ if (isset($_POST['login'])) {
         $row = $result->fetch_assoc();
 
         // Store session variables
-        $_SESSION['id']     = $row['id'];
+        $_SESSION['student']     = $row['id'];
         $_SESSION['name']   = $row['name'];
         $_SESSION['email']  = $row['email'];
         $_SESSION['centre'] = $row['centre'];
