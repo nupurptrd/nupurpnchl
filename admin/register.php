@@ -15,13 +15,12 @@ if (isset($_POST['register'])) {
     } else {
         $sql = "INSERT INTO admins (username, password) VALUES ('$username', '$password')";
 
-    if ($conn->query($sql) === TRUE) {
-        echo "<p style='color:green;'>Admin registered successfully! You can now login.</p>";
-        echo "<script>
-                setTimeout(function(){ window.location.href='../admin/login.php'; }, 2000);
-              </script>";
+     if ($conn->query($sql) === TRUE) {
+      echo "<p style='color:green;'>Student registered successfully! Redirecting to login...</p>";
+      header("Refresh:2; url=admin/login.php");  // waits 2 sec then goes
+      exit;
     } else {
-        echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+      echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
     }
 }
 }
@@ -41,7 +40,6 @@ if (isset($_POST['register'])) {
     <input type="password" name="password" required><br><br>
     <button type="submit" name="register">Register</button>
     <a href="../admin/login.php">
-    <button type="button">Login as Admin</button>
     </a>
   </form>
 </body>

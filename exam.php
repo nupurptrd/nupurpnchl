@@ -63,7 +63,8 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id");
                 <p><strong><?php echo $qno++ . ". " . $q['question']; ?></strong></p>
                 <label><input type="radio" name="q<?php echo $q['id']; ?>" value="a"> <?php echo $q['option_a']; ?></label><br>
                 <label><input type="radio" name="q<?php echo $q['id']; ?>" value="b"> <?php echo $q['option_b']; ?></label><br>
-                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="c"> <?php echo $q['option_c']; ?></label>
+                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="c"> <?php echo $q['option_c']; ?></label><br>
+                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="d"> <?php echo $q['option_d']; ?></label>
             </div>
         <?php endwhile; ?>
 

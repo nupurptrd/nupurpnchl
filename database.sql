@@ -10,8 +10,8 @@ CREATE TABLE students (
   centre VARCHAR(100) NOT NULL,
   role VARCHAR(100) NOT NULL
 );
-INSERT INTO admins (name, email, password, centre, role)
-VALUES ('student', 'student123@gmail.com', MD5('student123'), 'Ahmedabad', 'student'); -- default admin
+INSERT INTO students (name, email, password, centre, role)
+VALUES ('student', 'student123@gmail.com', MD5('student123'), 'Ahmedabad', 'student');
 
 CREATE TABLE exams (
   id INT AUTO_INCREMENT PRIMARY KEY,
@@ -36,11 +36,11 @@ ALTER TABLE results ADD UNIQUE(student_id, exam_id);
 CREATE TABLE admins (
   id INT AUTO_INCREMENT PRIMARY KEY,
   username VARCHAR(100) UNIQUE NOT NULL,
-  password VARCHAR(255) NOT NULL,
+  password VARCHAR(255) NOT NULL
 );
 
 INSERT INTO admins (username, password)
-VALUES ('admin', MD5('admin123')); -- default admin
+VALUES ('admin', MD5('admin123')); 
 
 CREATE TABLE questions (
   id INT AUTO_INCREMENT PRIMARY KEY,

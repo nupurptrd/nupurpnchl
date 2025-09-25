@@ -56,13 +56,13 @@ if (isset($_POST['login'])) {
     <option value="Disha">Disha</option>
     <option value="Other">Other</option>
   </select>
-  <label>Login as:</label><br>
-  <select name="role" required>
-    <option value="student">Student</option>
-    <option value="admin">Admin</option>
-  </select><br><br>
-
+  <br><br>
   <button type="submit" name="login">Login</button>
+  <div class="register-prompt">
+         <p>If you are new to the portal, first register yourself here: <br>
+          <button type="button" onclick="window.location.href='register.php'">Register</button>
+         </p>
+  </div>
 </form>
   <?php include 'footer.php'; ?>
 </body>
