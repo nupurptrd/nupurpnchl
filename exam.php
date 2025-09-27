@@ -8,72 +8,52 @@ if (!isset($_SESSION['student'])) {
 }
 
 $exam_id = isset($_GET['id']) ? intval($_GET['id']) : 1;
+$qno = isset($_GET['qno']) ? intval($_GET['qno']) : 1;
 
 // Get exam details
 $exam = $conn->query("SELECT * FROM exams WHERE id=$exam_id")->fetch_assoc();
-$questions = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id");
+
+// Get total questions
+$total_questions = $conn->query("SELECT COUNT(*) AS cnt FROM questions WHERE exam_id=$exam_id")->fetch_assoc()['cnt'];
+
+// Fetch current question
+$question = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id LIMIT ".($qno-1).",1")->fetch_assoc();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title><?php echo $exam['title']; ?> - Take Exam</title>
     <link rel="stylesheet" href="assets/style.css">
-    <script>
-    // Countdown timer
-    let duration = <?php echo $exam['duration']; ?> * 60; // convert minutes to seconds
-
-    function startTimer() {
-        let timer = duration, minutes, seconds;
-        let countdown = document.getElementById("time");
-
-        let interval = setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-
-            countdown.textContent = minutes + ":" + seconds;
-
-            if (--timer < 0) {
-                clearInterval(interval);
-                alert("⏳ Time is up! Your exam will be submitted automatically.");
-                document.getElementById("examForm").submit();
-            }
-        }, 1000);
-    }
-
-    window.onload = startTimer;
-    </script>
 </head>
 <body>
-    <?php include 'header.php'; ?>
+<?php include 'header.php'; ?>
 
-    <h2><?php echo $exam['title']; ?></h2>
-    <p><?php echo $exam['description']; ?> | Date: <?php echo $exam['date']; ?></p>
-    <p><strong>Time Remaining: <span id="time"></span></strong></p>
+<h2><?php echo $exam['title']; ?></h2>
+<p><?php echo $exam['description']; ?> | Date: <?php echo $exam['date']; ?></p>
 
-    <?php if ($questions->num_rows > 0): ?>
-    <form method="post" action="submit_exam.php" id="examForm">
+<?php if ($question): ?>
+    <form method="post" action="save_answer.php">
         <input type="hidden" name="exam_id" value="<?php echo $exam_id; ?>">
+        <input type="hidden" name="question_id" value="<?php echo $question['id']; ?>">
+        <input type="hidden" name="qno" value="<?php echo $qno; ?>">
 
-        <?php $qno = 1; ?>
-        <?php while($q = $questions->fetch_assoc()): ?>
-            <div class="question">
-                <p><strong><?php echo $qno++ . ". " . $q['question']; ?></strong></p>
-                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="a"> <?php echo $q['option_a']; ?></label><br>
-                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="b"> <?php echo $q['option_b']; ?></label><br>
-                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="c"> <?php echo $q['option_c']; ?></label><br>
-                <label><input type="radio" name="q<?php echo $q['id']; ?>" value="d"> <?php echo $q['option_d']; ?></label>
-            </div>
-        <?php endwhile; ?>
+        <p><strong>Q<?php echo $qno; ?>. <?php echo $question['question']; ?></strong></p>
+        <label><input type="text" name="option_a" value="1"> <?php echo $question['option_a']; ?></label><br>
+        <label><input type="radio" name="option_b" value="2"> <?php echo $question['option_b']; ?></label><br>
+        <label><input type="radio" name="option_c" value="3"> <?php echo $question['option_c']; ?></label><br>
+        <label><input type="radio" name="option_d" value="4"> <?php echo $question['option_d']; ?></label><br><br>
 
-        <button type="submit">Submit Exam</button>
+
+        <?php if ($qno < $total_questions): ?>
+            <button type="submit">Next Question</button>
+        <?php else: ?>
+            <button type="submit" formaction="submit_exam.php">Finish Exam</button>
+        <?php endif; ?>
     </form>
-    <?php else: ?>
-        <p>No questions available for this exam yet.</p>
-    <?php endif; ?>
+<?php else: ?>
+    <p>No questions available.</p>
+<?php endif; ?>
 
-    <?php include 'footer.php'; ?>
+<?php include 'footer.php'; ?>
 </body>
 </html>
