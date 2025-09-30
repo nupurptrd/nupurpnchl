@@ -8,9 +8,9 @@ if (!isset($_SESSION['student'])) {
 }
 
 // When starting a new exam, reset the timer
-$_SESSION['exam_start'][$exam_id] = time();
-header("Location: exam.php?id=$exam_id&qno=1");
-exit;
+//$_SESSION['exam_start'][$exam_id] = time();
+//header("Location: exam.php?id=$exam_id&qno=1");
+//exit;
 
 // Fetch all exams
 $exams = $conn->query("SELECT * FROM exams ORDER BY date ASC");

@@ -18,7 +18,7 @@ if (isset($_POST['register'])) {
       exit;
     } else {
       echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
-    }
+    }}
 ?>
 <!DOCTYPE html>
 <html>

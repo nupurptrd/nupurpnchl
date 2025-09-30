@@ -32,8 +32,17 @@ $score = 0;
 $total = $questions->num_rows;
 
 while ($q = $questions->fetch_assoc()) {
-    $qid = intval($q['id']);
-    $correct_answer = $q['correct_option'];
+    $qid = $q['id'];
+    $correct_answer = intval($q['correct_option']);
+
+    $res = $conn->query("SELECT answer FROM student_answers 
+                         WHERE student_id=$student_id AND exam_id=$exam_id AND question_id=$qid");
+    if ($res && $row = $res->fetch_assoc()) {
+        $student_answer = intval($row['answer']);
+        if ($student_answer === $correct_answer) {
+            $score++;
+        }
+    }
 
     if (isset($_POST['q' . $qid])) {
         $student_answer = $conn->real_escape_string($_POST['q' . $qid]);

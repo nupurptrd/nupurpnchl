@@ -23,7 +23,8 @@ $exam = $conn->query("SELECT * FROM exams WHERE id=$exam_id")->fetch_assoc();
 if (!$exam) {
     die("Exam not found.");
 }
-$duration = intval($exam['duration']* 60); // in minutes
+//remove the multiplecation
+ $duration = intval($exam['duration']); // in minutes
 
 // ✅ Save exam start time in session (first load only)
 if (!isset($_SESSION['exam_start'][$exam_id])) {
@@ -92,36 +93,82 @@ $question = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id LIMIT $
 
 <!-- Timer Script -->
 <script>
-let duration = <?php echo $remaining_seconds; ?>; // remaining time in seconds
-let timerDisplay = document.getElementById("timer");
-let warned = false;
+let durationMinutes = <?php echo $duration; ?>; // remaining time in seconds
+//alert(duration );
+let startTime = <?php echo $_SESSION['exam_start'][$exam_id]; ?>; // remaining time in seconds
+// alert(startTime);
+ let timerDisplay = document.getElementById("timer");
+// Convert duration to seconds
+let durationSeconds = durationMinutes * 60;
 
-function startTimer() {
-    let countdown = setInterval(function() {
-        let minutes = Math.floor(duration / 60);
-        let seconds = duration % 60;
+// Compute when the countdown should end
+let endTime = startTime + durationSeconds;
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+// Update function
+function updateTimer() {
+    let now = Math.floor(Date.now() / 1000); // current UNIX time in seconds
+    let remaining = endTime - now;
 
-        timerDisplay.textContent = minutes + ":" + seconds;
+    if (remaining <= 0) {
+        document.getElementById("timer").textContent = "00:00";
+        alert("Time is up!");
+        clearInterval(timerInterval);
+        return;
+    }
 
-        // ⚠️ Show warning ONLY once when exactly 10 minutes left
-        if (!warned && duration === 600) {
-            alert("⚠️ Only 10 minutes remaining!");
-            warned = true;
-        }
+    let minutes = Math.floor(remaining / 60);
+    let seconds = remaining % 60;
 
-        /*if (duration < 0) {
-            clearInterval(countdown);
-            alert("⏳ Time is up! Submitting exam...");
-            document.getElementById("examForm").submit();
-        }*/
-        duration--;//decrement after updating display
-    }, 1000);
+    // Format mm:ss
+    let formatted = 
+        String(minutes).padStart(2, '0') + ":" + 
+        String(seconds).padStart(2, '0');
+
+    document.getElementById("timer").textContent = formatted;
 }
 
-window.onload = startTimer;
+// Run immediately and then every second
+updateTimer();
+let timerInterval = setInterval(updateTimer, 1000);
+// let warned = false;
+
+// function startTimer() {
+//     let countdown = setInterval(function() {
+//         let minutes = Math.floor(duration / 60);
+//         let seconds = duration % 60;
+
+//         minutes = minutes < 10 ? "0" + minutes : minutes;
+//         seconds = seconds < 10 ? "0" + seconds : seconds;
+
+//         timerDisplay.textContent = minutes + ":" + seconds;
+
+//         // ⚠ Show warning ONLY once when exactly 10 minutes left
+//         if (!warned && duration === 600) {
+//             alert("⚠ Only 10 minutes remaining!");
+//             warned = true;
+//         }
+
+//         /*if (duration < 0) {
+//             clearInterval(countdown);
+//             alert("⏳ Time is up! Submitting exam...");
+//             document.getElementById("examForm").submit();
+//         }*/
+//         duration--;//decrement after updating display
+//     }, 1000);
+// }
+
+//window.onload = startTimer;
+// ⚠ Show warning ONLY once when exactly 10 minutes left
+         if (!warned && duration === 600) {
+             alert("⚠ Only 10 minutes remaining!");
+             warned = true;
+         }
+
+         if (duration < 0) {
+             clearInterval(countdown);
+             alert("⏳ Time is up! Submitting exam...");
+             document.getElementById("examForm").submit();
+         }
 </script>
 </body>
 </html>

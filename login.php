@@ -41,21 +41,12 @@ if (isset($_POST['login'])) {
   <h2>Login</h2>
   <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
   <form action="login.php" method="POST">
-  <label>Name:</label><br>
-  <input type="text" name="name" required><br><br>
+  
   <label>Email:</label><br>
   <input type="text" name="email" required><br><br>
   <label>Password:</label><br>
   <input type="password" name="password" required><br><br>
-  <label>Login Centre:</label><br>
-  <select name="centre" required>
-    <option value="Ahmedabad">Ahmedabad</option>
-    <option value="Shaila">Shaila</option>
-    <option value="Kapadwanj">Kapadwanj</option>
-    <option value="Valsad">Valsad</option>
-    <option value="Disha">Disha</option>
-    <option value="Other">Other</option>
-  </select>
+  
   <br><br>
   <button type="submit" name="login">Login</button>
   <div class="register-prompt">
