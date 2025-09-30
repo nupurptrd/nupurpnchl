@@ -1,6 +1,11 @@
 <header>
-  <h1>Exam Portal</h1>
+  
   <nav>
+    <div class="logo">
+      <img src="assets/logo.png" alt="Student Portal" height="80" class="logo">
+      <img src="assets/logo2.png" alt="Student Portal" height="80" class="logo">
+      <h1 class="site-title">Exam Portal</h1>
+    </div>
     <a href="index.php">Home</a>
     <a href="exams.php">Exams</a>
     <a href="results.php">Results</a>

@@ -30,6 +30,7 @@ CREATE TABLE results (
   FOREIGN KEY (student_id) REFERENCES students(id),
   FOREIGN KEY (exam_id) REFERENCES exams(id)
 );
+ALTER TABLE results ADD COLUMN total INT NOT NULL DEFAULT 0;
 ALTER TABLE results ADD UNIQUE(student_id, exam_id);
 
 
@@ -52,4 +53,14 @@ CREATE TABLE questions (
   option_d VARCHAR(255),
   correct_option CHAR(1),
   FOREIGN KEY (exam_id) REFERENCES exams(id)
+);
+
+CREATE TABLE student_answers (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    student_id INT NOT NULL,
+    exam_id INT NOT NULL,
+    question_id INT NOT NULL,
+    answer VARCHAR(1),
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(student_id, exam_id, question_id)
 );

@@ -128,6 +128,13 @@ if (!isset($_SESSION['admin']) || !isset($_SESSION['role']) || $_SESSION['role']
     </style>
 </head>
 <body>
+    <header>
+        <div class="logo">
+            <img src="../assets/logo.png" alt="Admin Dashboard" height="80">
+            <img src="../assets/logo2.png" alt="Admin Dashboard" height="80">
+        </div>
+    <h1>Admin Dashboard</h1>
+    </header>
     <!-- Sidebar -->
     <div class="sidebar">
         <h4>Exam System</h4>

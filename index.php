@@ -8,6 +8,9 @@
 </head>
 <body>
   <?php include 'header.php'; ?>
+  <?php if (isset($_GET['msg'])): ?>
+    <p style="color: green;"><?php echo htmlspecialchars($_GET['msg']); ?></p>
+  <?php endif; ?>
 
   <section class="hero">
     <h2>Welcome to the Online Exam Portal of <span style="color: black;">Blind People's Association.</span></h2>
@@ -33,7 +36,7 @@
     <div class="card">
       <h3>Attend exam </h3>
       <p>Give the exam as per guided by guidelines.</p>
-      <a href="exam.php">Attend exam →</a>
+      <a href="exam_selection.php">Attend exam →</a>
     </div>
     <div class="card">
       <h3>Admin Panel </h3>
