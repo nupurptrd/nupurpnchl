@@ -164,3 +164,37 @@ footer {
   padding: 15px;
   margin-top: 40px;
 }
+
+.site-header {
+    display: flex;
+    align-items: center;  /* vertically center */
+    gap: 10px;           /* space between logo and text */
+}
+
+.site-header .logo {
+    height: 50px;   /* adjust as per your design */
+    width: auto;
+}
+
+.site-header .site-title {
+    font-size: 24px;
+    margin: 0;  /* remove default margin of h1 */
+}
+
+#timerBox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #222;
+    color: #fff;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 10px;
+    z-index: 9999;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+body {
+    margin-top: 60px; /* push page down so timer doesn’t overlap */
+}

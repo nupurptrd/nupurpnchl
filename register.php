@@ -13,6 +13,7 @@ if (isset($_POST['register'])) {
             VALUES ('$name', '$email', '$password', '$centre', '$role')";
 
     if ($conn->query($sql) === TRUE) {
+<<<<<<< HEAD
         echo "<p aria-live='assertive'  style='color:green;'>Student registered successfully! You can now login.</p>";
         echo "<script>
                 setTimeout(function(){ window.location.href='/login.php'; }, 2000);
@@ -21,6 +22,14 @@ if (isset($_POST['register'])) {
         echo "<p aria-live='assertive' style='color:red;'>Error: " . $conn->error . "</p>";
     }
 }
+=======
+      echo "<p style='color:green;'>Student registered successfully! Redirecting to login...</p>";
+      header("Refresh:2; url=login.php");  // waits 2 sec then goes
+      exit;
+    } else {
+      echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+    }}
+>>>>>>> 348612bb4e8a914b587df9062d158fcce5239504
 ?>
 <!DOCTYPE html>
 <html>

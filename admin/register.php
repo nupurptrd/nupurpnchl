@@ -15,6 +15,7 @@ if (isset($_POST['register'])) {
     } else {
         $sql = "INSERT INTO admins (username, password) VALUES ('$username', '$password')";
 
+<<<<<<< HEAD
     if ($conn->query($sql) === TRUE) {
         echo "<p aria-live='assertive' style='color:green;'>Admin registered successfully! You can now login.</p>";
         echo "<script>
@@ -22,6 +23,14 @@ if (isset($_POST['register'])) {
               </script>";
     } else {
         echo "<p aria-live='assertive' style='color:red;'>Error: " . $conn->error . "</p>";
+=======
+     if ($conn->query($sql) === TRUE) {
+      echo "<p style='color:green;'>Student registered successfully! Redirecting to login...</p>";
+      header("Refresh:2; url=admin/login.php");  // waits 2 sec then goes
+      exit;
+    } else {
+      echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+>>>>>>> 348612bb4e8a914b587df9062d158fcce5239504
     }
 }
 }
@@ -41,7 +50,6 @@ if (isset($_POST['register'])) {
     <input type="password" id ="password" name="password" required><br><br>
     <button type="submit" name="register">Register</button>
     <a href="../admin/login.php">
-    <button type="button">Login as Admin</button>
     </a>
   </form>
 </body>

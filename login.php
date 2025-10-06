@@ -41,6 +41,7 @@ if (isset($_POST['login'])) {
   <h2>Login</h2>
   <?php if(isset($error)) echo "<p aria-live='assertive' style='color:red;'>$error</p>"; ?>
   <form action="login.php" method="POST">
+<<<<<<< HEAD
   <label for="name">Name:</label><br>
   <input type="text" id="name" name="name" required><br><br>
   <label for="email">Email:</label><br>
@@ -62,7 +63,21 @@ if (isset($_POST['login'])) {
     <option value="admin">Admin</option>
   </select><br><br>
 
+=======
+  
+  <label>Email:</label><br>
+  <input type="text" name="email" required><br><br>
+  <label>Password:</label><br>
+  <input type="password" name="password" required><br><br>
+  
+  <br><br>
+>>>>>>> 348612bb4e8a914b587df9062d158fcce5239504
   <button type="submit" name="login">Login</button>
+  <div class="register-prompt">
+         <p>If you are new to the portal, first register yourself here: <br>
+          <button type="button" onclick="window.location.href='register.php'">Register</button>
+         </p>
+  </div>
 </form>
   <?php include 'footer.php'; ?>
 </body>
