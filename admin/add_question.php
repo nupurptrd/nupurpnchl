@@ -32,10 +32,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Add Question</h2>
-    <?php if(isset($msg)) echo "<p>$msg</p>"; ?>
+    <?php if(isset($msg)) echo "<p aria-live='assertive' >$msg</p>"; ?>
     <form method="post">
-        <label>Exam:</label>
-        <select name="exam_id">
+        <label for ="exam" >Exam:</label>
+        <select id ="exam" name="exam_id">
             <?php
             $res = $conn->query("SELECT * FROM exams");
             while($row = $res->fetch_assoc()) {
@@ -43,18 +43,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             ?>
         </select><br>
-        <label>Question:</label>
-        <textarea name="question" required></textarea><br>
-        <label>Option A:</label>
-        <input type="text" name="option_a" required><br>
-        <label>Option B:</label>
-        <input type="text" name="option_b" required><br>
-        <label>Option C:</label>
-        <input type="text" name="option_c" required><br>
-        <label>Option D:</label>
-        <input type="text" name="option_d" required><br>
-        <label>Correct Answer:</label>
-        <select name="correct">
+        <label for="question" >Question:</label>
+        <textarea id = "question" name="question" required></textarea><br>
+        <label for = "a" >Option A:</label>
+        <input type="text" id = "a" name="option_a" required><br>
+        <label for ="b" >Option B:</label>
+        <input type="text" id ="b" name="option_b" required><br>
+        <label for ="c" >Option C:</label>
+        <input type="text" id = "c" name="option_c" required><br>
+        <label for = "d" >Option D:</label>
+        <input type="text" id ="d" name="option_d" required><br>
+        <label for = "correct" >Correct Answer:</label>
+        <select id = "correct" name="correct">
             <option value="a">Option A</option>
             <option value="b">Option B</option>
             <option value="c">Option C</option>

@@ -45,7 +45,7 @@ if ($conn->query($sql)) {
     <?php include 'header.php'; ?>
 
     <h2>Exam Submitted</h2>
-    <p><?php echo $message; ?></p>
+    <p aria-live="assertive" ><?php echo $message; ?></p>
     <a href="results.php">View My Results</a>
 
     <?php include 'footer.php'; ?>

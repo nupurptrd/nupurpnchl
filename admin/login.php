@@ -26,12 +26,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
     <h2>Admin Login</h2>
-    <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <?php if(isset($error)) echo "<p aria-live='assertive' style='color:red;'>$error</p>"; ?>
     <form method="post">
-        <label>Username:</label>
-        <input type="text" name="username" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
+        <label for ="username" >Username:</label>
+        <input type="text" id ="username" name="username" required><br>
+        <label for="password" >Password:</label>
+        <input type="password" id ="password" name="password" required><br>
         <button type="button" onclick="window.location.href='../admin/dashboard.php'">Login</button>
 
     </form>

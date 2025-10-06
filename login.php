@@ -25,7 +25,7 @@ if (isset($_POST['login'])) {
         header("Location: index.php");
         exit;
     } else {
-        echo "<p style='color:red;'>Invalid email or password.</p>";
+        echo "<p style='color:red;' aria-live='assertive'>Invalid email or password.</p>";
     }
 }
 
@@ -39,14 +39,14 @@ if (isset($_POST['login'])) {
 <body>
   <?php include 'header.php'; ?>
   <h2>Login</h2>
-  <?php if(isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+  <?php if(isset($error)) echo "<p aria-live='assertive' style='color:red;'>$error</p>"; ?>
   <form action="login.php" method="POST">
-  <label>Name:</label><br>
-  <input type="text" name="name" required><br><br>
-  <label>Email:</label><br>
-  <input type="text" name="email" required><br><br>
-  <label>Password:</label><br>
-  <input type="password" name="password" required><br><br>
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name" required><br><br>
+  <label for="email">Email:</label><br>
+  <input type="text" id="email" name="email" required><br><br>
+  <label for="password" >Password:</label><br>
+  <input type="password" id = "password" name="password" required><br><br>
   <label>Login Centre:</label><br>
   <select name="centre" required>
     <option value="Ahmedabad">Ahmedabad</option>

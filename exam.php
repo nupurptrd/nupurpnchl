@@ -60,7 +60,7 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id");
         <?php $qno = 1; ?>
         <?php while($q = $questions->fetch_assoc()): ?>
             <div class="question">
-                <p><strong><?php echo $qno++ . ". " . $q['question']; ?></strong></p>
+                <p aria-live='assertive' ><strong><?php echo $qno++ . ". " . $q['question']; ?></strong></p>
                 <label><input type="radio" name="q<?php echo $q['id']; ?>" value="a"> <?php echo $q['option_a']; ?></label><br>
                 <label><input type="radio" name="q<?php echo $q['id']; ?>" value="b"> <?php echo $q['option_b']; ?></label><br>
                 <label><input type="radio" name="q<?php echo $q['id']; ?>" value="c"> <?php echo $q['option_c']; ?></label>
@@ -70,7 +70,7 @@ $questions = $conn->query("SELECT * FROM questions WHERE exam_id=$exam_id");
         <button type="submit">Submit Exam</button>
     </form>
     <?php else: ?>
-        <p>No questions available for this exam yet.</p>
+        <p aria-live="assertive" >No questions available for this exam yet.</p>
     <?php endif; ?>
 
     <?php include 'footer.php'; ?>

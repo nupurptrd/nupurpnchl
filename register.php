@@ -13,12 +13,12 @@ if (isset($_POST['register'])) {
             VALUES ('$name', '$email', '$password', '$centre', '$role')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p style='color:green;'>Student registered successfully! You can now login.</p>";
+        echo "<p aria-live='assertive'  style='color:green;'>Student registered successfully! You can now login.</p>";
         echo "<script>
                 setTimeout(function(){ window.location.href='/login.php'; }, 2000);
               </script>";
     } else {
-        echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+        echo "<p aria-live='assertive' style='color:red;'>Error: " . $conn->error . "</p>";
     }
 }
 ?>
@@ -31,14 +31,14 @@ if (isset($_POST['register'])) {
 <body>
   <h2>Student Registration</h2>
   <form method="post">
-    <label>Name:</label>
-    <input type="text" name="name" required><br>
-    <label>Email:</label>
-    <input type="email" name="email" required><br>
-    <label>Password:</label>
-    <input type="password" name="password" required><br>
-    <label>Login Centre:</label><br>
-  <select name="centre" required>
+    <label for="name" >Name:</label>
+    <input type="text"id="name"  name="name" required><br>
+    <label for="email" >Email:</label>
+    <input type="email" id ="email" name="email" required><br>
+    <label for="password" >Password:</label>
+    <input type="password" id ="password"name="password" required><br>
+    <label for ="centre" >Login Centre:</label><br>
+  <select id = "centre" name="centre" required>
     <option value="Ahmedabad">Ahmedabad</option>
     <option value="Shaila">Shaila</option>
     <option value="Kapadwanj">Kapadwanj</option>

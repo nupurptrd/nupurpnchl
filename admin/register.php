@@ -11,17 +11,17 @@ if (isset($_POST['register'])) {
     $check_result = $conn->query($check_sql);
 
     if ($check_result->num_rows > 0) {
-        echo "<p style='color:red;'>This username already exists. Please choose another.</p>";
+        echo "<p aria-live ='assertive' style='color:red;'>This username already exists. Please choose another.</p>";
     } else {
         $sql = "INSERT INTO admins (username, password) VALUES ('$username', '$password')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "<p style='color:green;'>Admin registered successfully! You can now login.</p>";
+        echo "<p aria-live='assertive' style='color:green;'>Admin registered successfully! You can now login.</p>";
         echo "<script>
                 setTimeout(function(){ window.location.href='../admin/login.php'; }, 2000);
               </script>";
     } else {
-        echo "<p style='color:red;'>Error: " . $conn->error . "</p>";
+        echo "<p aria-live='assertive' style='color:red;'>Error: " . $conn->error . "</p>";
     }
 }
 }
@@ -35,10 +35,10 @@ if (isset($_POST['register'])) {
 <body>
   <h2>Admin Registration</h2>
   <form method="post">
-    <label>Username:</label>
-    <input type="text" name="username" required><br>
-    <label>Password:</label>
-    <input type="password" name="password" required><br><br>
+    <label for ="username">Username:</label>
+    <input type="text" id ="username" name="username" required><br>
+    <label for= password" >Password:</label>
+    <input type="password" id ="password" name="password" required><br><br>
     <button type="submit" name="register">Register</button>
     <a href="../admin/login.php">
     <button type="button">Login as Admin</button>
